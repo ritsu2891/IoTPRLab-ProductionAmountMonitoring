@@ -1,0 +1,36 @@
+version: '2'
+services:
+  #DB
+  mysql:
+    container_name: "mysql"
+    image: mysql:5.6
+    volumes:
+      - "./MySQL:/docker-entrypoint-initdb.d"
+      - "./MySQL/data:/var/lib/mysql"
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: iot_db
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "Asia/Tokyo"
+  #nginx
+  nginx:
+    container_name: "nginx"
+    image: nginx:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./3_web_back:/var/www/
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - mysql
+      - php
+  php:
+    container_name: "php"
+    image: bitnami/php-fpm:7.2
+    ports:
+      - '9000:9000'
+    volumes:
+      - ./3_web_back:/var/www/
+    links:
+      - mysql

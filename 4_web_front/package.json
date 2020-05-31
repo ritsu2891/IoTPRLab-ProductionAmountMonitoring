@@ -1,0 +1,47 @@
+{
+  "name": "dr-production-minotoring-client",
+  "version": "1.0.0",
+  "description": "WEB client of production monitoring IoT system.",
+  "author": "Ritsuki KOKUBO (dev.rpaka)",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@types/chart.js": "^2.8.11",
+    "@types/jest": "^24.0.23",
+    "@types/luxon": "^1.15.2",
+    "@types/pixi.js": "^5.0.0",
+    "@types/url-join": "^4.0.0",
+    "chart.js": "^2.9.2",
+    "luxon": "^1.21.1",
+    "nuxt": "^2.0.0",
+    "pixi": "^0.3.1",
+    "three": "^0.110.0",
+    "ts-debounce-throttle": "^1.0.0",
+    "url-join": "^4.0.1",
+    "vue-chartjs": "^3.5.0",
+    "vue-property-decorator": "^8.3.0"
+  },
+  "devDependencies": {
+    "@nuxt/typescript": "^2.8.1",
+    "@nuxt/typescript-build": "^0.3.4",
+    "@nuxtjs/vuetify": "^1.0.0",
+    "@types/three": "^0.103.2",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "vue-jest": "^4.0.0-0"
+  }
+}

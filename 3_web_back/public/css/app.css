@@ -1,0 +1,74 @@
+header {
+    background-color: darkgreen;
+    color: white;
+    padding: 15px;
+}
+
+.graphWapper {
+    width:500px;
+    padding:5px;
+}
+
+.dataWindow {
+    position: absolute;
+    top: 0;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.dataWindow__chart {
+    width: 270px;
+    height: 170px;
+}
+
+.dataWindowInfo {
+    display: table;
+    margin: auto
+}
+
+.dataWindowInfo__value {
+    font-size: 80px;
+    margin: 0;
+    display: table-cell;
+}
+
+.dataWindowInfo__status {
+    font-size: 40px;
+    color: black;
+    display: table-cell;
+}
+
+.dataWindowInfo__note {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px
+}
+
+.dataWindowInfo__note > span {
+    font-size: 20px;
+}
+
+.config {
+    width: 250px;
+    padding: 20px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: none;
+}
+
+.aboutW {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.about {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+    width: 800px;
+}
