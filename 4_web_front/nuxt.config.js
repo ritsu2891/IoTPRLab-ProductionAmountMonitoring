@@ -13,28 +13,19 @@ export default {
     ]
   },
   loading: { color: '#fff' },
-
-  css: [
-  ],
-
-  plugins: [
-  ],
-
   buildModules: [
     '@nuxtjs/vuetify',
     '@nuxt/typescript-build'
   ],
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/dotenv',
+      {
+        filename: process.env.NODE_ENV !== 'production' ? "./.env.dev" : "./.env.prod"
+      }
+    ]
   ],
-
-  axios: {
-  },
-
-  vuetify: {
-    customVariables: ['~/assets/variables.scss']
-  },
-
   build: {
     extend (config, { isDev, isClient }) {
       config.devtool = 'eval-source-map'
