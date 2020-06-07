@@ -27,9 +27,9 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
-import DataGraph from '~/components/DataGraph.vue'
-import DataLiveNumber from '~/components/DataLiveNumber.vue'
-import DataMetaInfo from '~/components/DataMetaInfo.vue'
+import DataGraph from '../components/DataGraph.vue'
+import DataLiveNumber from '../components/DataLiveNumber.vue'
+import DataMetaInfo from '../components/DataMetaInfo.vue'
 
 @Component({
   components: { DataGraph, DataLiveNumber, DataMetaInfo },

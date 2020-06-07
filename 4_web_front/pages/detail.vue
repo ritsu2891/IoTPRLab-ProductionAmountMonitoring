@@ -136,17 +136,17 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
 import { debounce } from 'ts-debounce-throttle';
 
-import globalMenuAndFAB from '~/pages/globalMenuAndFAB.vue'
+import globalMenuAndFAB from '../pages/globalMenuAndFAB.vue'
 
-import PageTitle from '~/components/PageTitle.vue'
-import DataGraph from '~/components/DataGraph.vue'
-import MenuButtonPalette from '~/components/MenuButtonPalette.vue'
-import IOSHSelector from '~/components/IOSHSelector.vue'
-import DateInputField from '~/components/DateInputField.vue'
+import PageTitle from '../components/PageTitle.vue'
+import DataGraph from '../components/DataGraph.vue'
+import MenuButtonPalette from '../components/MenuButtonPalette.vue'
+import IOSHSelector from '../components/IOSHSelector.vue'
+import DateInputField from '../components/DateInputField.vue'
 
-import { DataRange } from '~/entities/DataRange'
-import { DetailViewController } from '~/logics/DetailViewController'
-import { CountDataCSVRepositoryImpl, SettingRepositoryImpl, SettingRepository } from '~/logics/Repositories'
+import { DataRange } from '../entities/DataRange'
+import { DetailViewController } from '../logics/DetailViewController'
+import { CountDataCSVRepositoryImpl, SettingRepositoryImpl, SettingRepository } from '../logics/Repositories'
 
 type TimeScale = "minutes" | "hours" | "days" | "months" | "years"
 type GraphScaleItem = {id: TimeScale, txt: string}

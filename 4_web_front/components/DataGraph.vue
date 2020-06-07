@@ -14,7 +14,7 @@
 import { Chart, ChartConfiguration } from 'chart.js'
 import { Component, Prop, Vue, Mixins, Watch, Emit } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
-import { DataRange } from '~/entities/DataRange'
+import { DataRange } from '../entities/DataRange'
 
 enum MouseState { LeftDrag, Free }
 

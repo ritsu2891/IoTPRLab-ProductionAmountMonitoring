@@ -69,8 +69,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import IOSHSelector from '~/components/IOSHSelector.vue'
-import { SettingRepositoryImpl, SettingRepository } from '~/logics/Repositories'
+import IOSHSelector from '../components/IOSHSelector.vue'
+import { SettingRepositoryImpl, SettingRepository } from '../logics/Repositories'
 
 @Component({components: {IOSHSelector}})
 export default class GMenuAndFABPage extends Vue {

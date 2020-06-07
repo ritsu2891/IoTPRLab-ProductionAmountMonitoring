@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon'
-import { CountDataRepository, CountDataRepositoryImpl, SettingRepository, SettingRepositoryImpl } from '~/logics/Repositories'
-import { CountData } from '~/entities/CountData'
+import { CountDataRepository, CountDataRepositoryImpl, SettingRepository, SettingRepositoryImpl } from '../logics/Repositories'
+import { CountData } from '../entities/CountData'
 
 type RepoDataEntity = CountData;
 type ProcessDataEntity = {y: number, t: DateTime};

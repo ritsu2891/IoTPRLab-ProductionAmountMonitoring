@@ -58,15 +58,15 @@
 </style>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import DataSummarizeCard from '~/components/DataSummarizeCard.vue'
-import PageTitle from '~/components/PageTitle.vue'
-import MenuButtonPalette from '~/components/MenuButtonPalette.vue'
-import Map2D from '~/components/Map2D.vue'
-import Map3D from '~/components/Map3D.vue'
-import { CountDataRepositoryImpl, SettingRepositoryImpl, SettingRepository } from '~/logics/Repositories'
-import IOSHSelector from '~/components/IOSHSelector.vue'
-import globalMenuAndFAB from '~/pages/globalMenuAndFAB.vue'
-import { MapViewController } from '~/logics/MapViewController'
+import DataSummarizeCard from '../components/DataSummarizeCard.vue'
+import PageTitle from '../components/PageTitle.vue'
+import MenuButtonPalette from '../components/MenuButtonPalette.vue'
+import Map2D from '../components/Map2D.vue'
+import Map3D from '../components/Map3D.vue'
+import { CountDataRepositoryImpl, SettingRepositoryImpl, SettingRepository } from '../logics/Repositories'
+import IOSHSelector from '../components/IOSHSelector.vue'
+import globalMenuAndFAB from '../pages/globalMenuAndFAB.vue'
+import { MapViewController } from '../logics/MapViewController'
 import { DateTime } from 'luxon'
 
 type ChartDataEntity = {y: number, t: Date};
