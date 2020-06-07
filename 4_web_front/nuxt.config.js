@@ -1,8 +1,8 @@
 export default {
   mode: 'spa',
   head: {
-    titleTemplate: '%s - ネジ生産個数モニタリングシステム',
-    title: 'ネジ生産個数モニタリングシステム',
+    titleTemplate: '%s - 生産個数モニタリングシステム',
+    title: '生産個数モニタリングシステム',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

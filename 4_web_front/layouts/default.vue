@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-app-bar app>
-      <v-toolbar-title>ネジ生産個数モニタリングシステム</v-toolbar-title>
+      <v-toolbar-title>生産個数モニタリングシステム</v-toolbar-title>
     </v-app-bar>
     <div style="height: 64px"></div>
     
@@ -18,7 +18,7 @@
       <v-card>
         <v-card-title class="headline">About</v-card-title>
         <v-card-text>
-          <h2>ネジ生産個数モニタリングシステム<br />WEBクライアント ver2.0</h2>
+          <h2>生産個数モニタリングシステム<br />WEBクライアント ver2.0</h2>
           <hr style="margin: 10px 0" />
           <p>&copy; 2019 Ritsuki KOKUBO (dev.rpaka)<br />愛知県IoT推進ラボ, 愛知県立大学</p>
           <hr style="margin: 10px 0" />
