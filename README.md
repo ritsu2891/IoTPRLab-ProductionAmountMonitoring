@@ -3,18 +3,18 @@
   <h1>IoTPRLab-ProductionAmountMonitoring</h1>
   <h1>生産個数モニタリングIoTシステム</h1>
   <h2>愛知県IoT推進ラボ 2018-2019</h2>
-  <div style="margin-bottom: 10px">
+  <div style="margin-bottom: 20px">
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/raspberry-pi.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/c-lang.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/dustnet.jpg" height="80px"/>
   </div>
-  <div style="margin-bottom: 10px">
+  <div style="margin-bottom: 20px">
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/mysql.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/Python.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/php.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/laravel.svg" height="80px"/>
   </div>
-  <div style="margin-bottom: 10px">
+  <div style="margin-bottom: 20px">
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/typescript.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/vue.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/vuetify.svg" height="80px" style="margin-right: 10px"/>
@@ -23,7 +23,7 @@
   <div>
     <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/docker.svg" height="80px"/>
   </div>
-</div>
+</div><br>
 
 ![動作イメージ](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_1_map.png)
 
