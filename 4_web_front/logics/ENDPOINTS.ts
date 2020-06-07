@@ -2,7 +2,7 @@ import urljoin from 'url-join'
 import { DateTime } from 'luxon'
 
 export class COUNT_DATA_API {
-  URI: string = 'http://localhost/api/v2';
+  URI: string = process.env.API_URL ?? 'http://localhost/api/v2';
   all(range: string, startDate: DateTime, endDate: DateTime, type: 'json'|'csv' = 'json') {
     if (!(['minutes', 'hours', 'days', 'months', 'years'].includes(range))) {
       throw new Error(`Invalid range type: ${range}`);
