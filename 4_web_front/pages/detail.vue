@@ -1,8 +1,21 @@
 <template>
-  <GMenuAndFABPage view-select="second">
+  <globalMenuAndFAB view-select="second">
     <template v-slot:QuickActionArea>
-      <IOSHSelector :id="2" :length="350" :links="graphScaleItem" v-model="graphScaleSelectedItem" style="display: inline-block; width: 300px;" />
-      <v-text-field label="集計幅" filled v-model="chunkSizeInput" :rules="[rules.isdigit]" :suffix="currentTimeRangeSuffix" height="58px" style="display: inline-block; width: 120px; position: relative; top: -31px; margin-left: 5px;"></v-text-field>
+      <IOSHSelector
+        :id="2"
+        :length="350"
+        :links="graphScaleItem"
+        v-model="graphScaleSelectedItem"
+        class="RangeScaleSelector"
+      ></IOSHSelector>
+      <v-text-field
+        label="集計幅"
+        filled v-model="chunkSizeInput"
+        :rules="[rules.isdigit]"
+        :suffix="currentTimeRangeSuffix"
+        height="58px"
+        class="ChunkSizeInput"
+      ></v-text-field>
     </template>
 
     <template v-slot:FABActions>
@@ -14,7 +27,6 @@
         </template>
         <span>CSVで出力</span>
       </v-tooltip>
-
       <v-tooltip left>
         <template v-slot:activator="{ on }">
           <v-btn fab small color="primary" v-on="on" @click="onMoveToCurrentBtnClicked()">
@@ -23,19 +35,17 @@
         </template>
         <span>現在時刻に移動</span>
       </v-tooltip>
-
       <v-tooltip left>
         <template v-slot:activator="{ on }">
-          <v-btn fab small color="primary" v-on="on" @click="controller.autoFetch = true">
+          <v-btn fab small color="primary" v-on="on" @click="onFetchLatestAndSyncClicked()">
             <v-icon>mdi-sync</v-icon>
           </v-btn>
         </template>
         <span>最新データを取得して追従</span>
       </v-tooltip>
-
       <v-tooltip left>
         <template v-slot:activator="{ on }">
-          <v-btn fab small color="primary" v-on="on" @click.stop="dialog_moveDatePick = true">
+          <v-btn fab small color="primary" v-on="on" @click.stop="onMoveDateModalOpen()">
             <v-icon>mdi-timeline-clock-outline</v-icon>
           </v-btn>
         </template>
@@ -43,58 +53,90 @@
       </v-tooltip>
     </template>
 
-    <div style=" padding: 30px;">
+    <div style="padding: 30px;">
       <DataGraph
         style="height: 600px; width: 100%;"
         :id="1"
         :data="chartdata"
-        :options="chartoption"
+        :options="chartOption"
         :range="range"
         @rangeChanged="onRangeChanged"
-        @requestWider="onWiderRequested"
-        @requestNarrower="onNarrowerRequested"
+        @requestWider="onGraphScaleChanged('wider')"
+        @requestNarrower="onGraphScaleChanged('narrower')"
         ref="graph"
       />
     </div>
 
     <!-- モーダル -->
     <!-- 日時を指定して移動 -->
-    <v-dialog v-model="dialog_moveDatePick" max-width="900">
+    <v-dialog v-model="dialog_moveDatePick_show" max-width="900">
       <v-card>
         <v-card-title class="headline">日時を指定して移動</v-card-title>
         <v-card-text>
-          <date-input-field label="移動先" v-model="point_dt" />
+          <date-input-field label="移動先" v-model="dialog_moveDatePick_point_dt" />
           <div align="right">
-            <v-btn color="primary" @click="onDateMoveDateModalSubmit()">OK</v-btn>
+            <v-btn color="primary" @click="onMoveDateModalSubmit()">OK</v-btn>
           </div>
         </v-card-text>
       </v-card>
     </v-dialog>
 
     <!-- CSV -->
-    <v-dialog v-model="dialog_csv" max-width="900">
+    <v-dialog v-model="dialog_csv_show" max-width="900">
       <v-card>
         <v-card-title class="headline">CSV出力</v-card-title>
         <v-card-text>
-          <v-select v-model="csv_scale" :items="graphScaleItem.map((item) => {return {text: item.txt, value: item.id};})" label="時間単位"></v-select>
-          <date-input-field label="開始" v-model="csv_start_dt" />
-          <date-input-field label="終了" v-model="csv_end_dt" />
+          <v-select
+            v-model="dialog_csv_scale"
+            :items="graphScaleItem.map((item) => {
+              return {
+                text: item.txt,
+                value: item.id
+              };
+            })"
+            label="時間単位"
+          ></v-select>
+          <date-input-field label="開始" v-model="dialog_csv_start" />
+          <date-input-field label="終了" v-model="dialog_csv_end" />
           <div align="right">
-            <v-btn color="primary" :disabled="!(csv_start_dt && csv_end_dt)" @click="onCSVOutputModalSubmit()">ダウンロード</v-btn>
-            <v-btn color="primary" @click="dialog_csv = false">閉じる</v-btn>
+            <v-btn
+              color="primary"
+              :disabled="!(dialog_csv_start && dialog_csv_end)"
+              @click="onCSVOutputModalSubmit()"
+            >
+              ダウンロード
+            </v-btn>
+            <v-btn
+              color="primary"
+              @click="dialog_csv_show = false"
+            >
+              閉じる
+            </v-btn>
           </div>
         </v-card-text>
       </v-card>
     </v-dialog>
-  </GMenuAndFABPage>
+  </globalMenuAndFAB>
 </template>
-
+<style scoped>
+.RangeScaleSelector {
+  display: inline-block;
+  width: 300px;
+}
+.ChunkSizeInput {
+  display: inline-block;
+  position: relative;
+  top: -31px;
+  margin-left: 5px;
+  width: 120px;
+}
+</style>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { DateTime, Duration } from 'luxon'
 import { debounce } from 'ts-debounce-throttle';
 
-import GMenuAndFABPage from '~/pages/GMenuAndFABPage.vue'
+import globalMenuAndFAB from '~/pages/globalMenuAndFAB.vue'
 
 import PageTitle from '~/components/PageTitle.vue'
 import DataGraph from '~/components/DataGraph.vue'
@@ -106,35 +148,55 @@ import { DataRange } from '~/entities/DataRange'
 import { DetailViewController } from '~/logics/DetailViewController'
 import { CountDataCSVRepositoryImpl, SettingRepositoryImpl, SettingRepository } from '~/logics/Repositories'
 
+type TimeScale = "minutes" | "hours" | "days" | "months" | "years"
+type GraphScaleItem = {id: TimeScale, txt: string}
+type FormRules = {[ruleName: string]: (value: string) => boolean | string}
+type WholeDatasetsItnl = {[moteMacAddr: string]: {y: number, t: Date}[]}
+
 Component.registerHooks([
   'beforeRouteLeave'
 ])
-
-@Component({components: {GMenuAndFABPage, PageTitle, DataGraph, MenuButtonPalette, IOSHSelector, DateInputField}})
+@Component({
+  components: {
+    globalMenuAndFAB,
+    PageTitle,
+    DataGraph,
+    MenuButtonPalette,
+    IOSHSelector,
+    DateInputField
+  }
+})
 export default class IndexPage extends Vue {
-  data: {[moteMacAddr: string]: {y: number, t: Date}[]} = {};
   settings: SettingRepository = new SettingRepositoryImpl();
-  range: DataRange = new DataRange();
-  chunkSize: number = 1;
-  chunkSizeInput: string = `${this.chunkSize}`;
-  controller!: DetailViewController;
-  fab: boolean = false;
-
-  rules: any = {
+  rules: FormRules = {
     isdigit: (value: string) => {
       const pattern = /^\d+$/
       return pattern.test(value) || '数字のみ可'
     },
   }
 
-  chartdata: Object = {
-    datasets: []
+  //===================================
+  /*-------------.
+  | ライフサイクル |
+  `-------------*/
+  mounted() {
+    this.range.begin = DateTime.local();
+    this.controller = new DetailViewController(this);
+    this.onDataChanged();
+  }
+  beforeRouteLeave (to: any, from: any, next: any) {
+    this.controller.clearInterval();
+    next();
   }
 
+
+  //===================================
+  /*---------------.
+  | グラフオプション |
+  `---------------*/
   chartLabelFontSize: number = 16
   chartLabelFontColor: string = "black"
-
-  chartoption: Object = {
+  chartOption: Object = {
     responsive: true,
     maintainAspectRatio: false,
     layout: {
@@ -184,92 +246,23 @@ export default class IndexPage extends Vue {
       duration: 0,
     }
   }
-  updater: any = debounce(this.dataUpdate, 300)
 
-  viewButtonItem: Object[] = [
-    {
-      id: 'first',
-      icon: "mdi-map-search",
-      href: "/"
-    },
-    {
-      id: 'second',
-      icon: "mdi-chart-line",
-      href: "/detail"
-    }
-  ]
 
-  viewButtonSelectedItem: string = 'second'
-
-  graphScaleItem: Object[] = [
-    {
-      id: 'minutes',
-      txt: '分',
-    },
-    {
-      id: 'hours',
-      txt: '時',
-    },
-    {
-      id: 'days',
-      txt: '日',
-    },
-    {
-      id: 'months',
-      txt: '月',
-    },
-    {
-      id: 'years',
-      txt: '年',
-    },
-  ]
-
-  get currentTimeRangeSuffix(): string {
-    let res: string = '';
-    this.graphScaleItem.forEach((item: any) => {
-      if (item.id == this.range.type) {
-        res = item.txt;
-      }
-    });
-    return res;
-  }
-
-  graphScaleSelectedItem: "minutes" | "hours" | "days" | "months" | "years" = "minutes"
-
-  dialog_moveDatePick: boolean = false
-  point_dt: DateTime = DateTime.local()
-
-  dialog_csv: boolean = false
-  csv_start_dt: DateTime | null = null
-  csv_end_dt: DateTime | null = null
-  csv_scale: "minutes" | "hours" | "days" | "months" | "years" = "minutes"
-
-  mounted() {
-    this.range.begin = DateTime.local();
-    this.controller = new DetailViewController(this);
-    this.onDataChanged();
-  }
-
-  onRangeChanged(newRange: DataRange) {
-    this.controller.autoFetch = false;
-    this.range = newRange;
-    this.updater();
-  }
-
-  @Watch('range', {deep: true}) 
-  rc() {
-    (this.$refs.graph as any).onRangeChanged();
-  }
-
-  dataUpdate() {
+  /*-----------.
+  | グラフデータ |
+  `-----------*/
+  controller!: DetailViewController;
+  l_requestUpdateData: any = debounce(this.requestUpdateData, 300);
+  requestUpdateData() {
     this.controller.update()
   }
-
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  data: WholeDatasetsItnl = {};
+  chartdata: Object = {datasets: []};
   @Watch('data')
   onDataChanged() {
     this.chartdata = this.buildGraphDataSets();
   }
-
   buildGraphDataSets() {
     let datasets: any = [];
     const machineProfiles = this.settings.machineProfile;
@@ -293,31 +286,84 @@ export default class IndexPage extends Vue {
     }
   }
 
-  onWiderRequested() {
-    this.data = {};
-    this.range.setRangeWider(true);
-    this.graphScaleSelectedItem = this.range.type;
-    this.controller.update();
+
+  /*----------.
+  | グラフ範囲 |
+  `----------*/
+  range: DataRange = new DataRange();
+  onRangeChanged(newRange: DataRange) {
+    this.controller.autoFetch = false;
+    this.range = newRange;
+    this.l_requestUpdateData();
+  }
+  @Watch('range', {deep: true}) 
+  appllyRangeChange() {
     (this.$refs.graph as any).onRangeChanged();
   }
 
-  onNarrowerRequested() {
-    this.data = {};
-    this.range.setRangeNarrower(true);
-    this.graphScaleSelectedItem = this.range.type;
-    this.controller.update();
-    (this.$refs.graph as any).onRangeChanged();
-  }
 
-  // グローバル Viewスイッチの横のコントロールの処理
+  /*-------------.
+  | グラフスケール |
+  `--------------*/
+  graphScaleItem: GraphScaleItem[] = [
+    {
+      id: 'minutes',
+      txt: '分',
+    },
+    {
+      id: 'hours',
+      txt: '時',
+    },
+    {
+      id: 'days',
+      txt: '日',
+    },
+    {
+      id: 'months',
+      txt: '月',
+    },
+    {
+      id: 'years',
+      txt: '年',
+    },
+  ]
+  graphScaleSelectedItem: TimeScale = "minutes"
+  get currentTimeRangeSuffix(): string {
+    let res: string = '';
+    this.graphScaleItem.forEach((item: any) => {
+      if (item.id == this.range.type) {
+        res = item.txt;
+      }
+    });
+    return res;
+  }
   @Watch('graphScaleSelectedItem')
-  onRangeChangeSelected() {
+  onGraphScaleChanged(rangeType: TimeScale | "wider" | "narrower") {
     this.data = {};
-    this.range.type = this.graphScaleSelectedItem;
+    switch (rangeType) {
+      case "wider":
+        this.range.setRangeWider(true);
+        this.graphScaleSelectedItem = this.range.type;
+        break;
+      case "narrower":
+        this.range.setRangeNarrower(true);
+        this.graphScaleSelectedItem = this.range.type;
+        break;
+      default:
+        this.range.type = rangeType;
+        break;
+    }
     this.controller.update();
     (this.$refs.graph as any).onRangeChanged();
+    return rangeType;
   }
 
+
+  /*----------------.
+  | チャンク（集計幅） |
+  `-----------------*/
+  chunkSize: number = 1;
+  chunkSizeInput: string = `${this.chunkSize}`;
   @Watch('chunkSizeInput')
   onChunkSizeChanged() {
     if (this.rules.isdigit(this.chunkSizeInput) === true && parseInt(this.chunkSizeInput) > 0) {
@@ -328,43 +374,58 @@ export default class IndexPage extends Vue {
     }
   }
 
-  // FABダイレクト動作の処理
+
+  /*-------------------.
+  | クイックアクション関係 |
+  `--------------------*/
+  // 現在時刻に移動
   onMoveToCurrentBtnClicked() {
     const currentDt = DateTime.local();
     this.range.finish = currentDt;
-    this.updater();
+    this.l_requestUpdateData();
     (this.$refs.graph as any).onRangeChanged();
   }
+  // 最新データを取得して追従
+  onFetchLatestAndSyncClicked() {
+    this.controller.autoFetch = true;
+  }
 
-  // ダイアログの処理
-  onDateMoveDateModalSubmit() {
-    this.dialog_moveDatePick = false;
-    if (this.point_dt) {
-      this.range.center = this.point_dt;
-      this.updater();
+
+  /*-------------.
+  | ダイアログ関係 |
+  `-------------*/
+  // 日付を指定して移動
+  dialog_moveDatePick_show: boolean = false
+  dialog_moveDatePick_point_dt: DateTime = DateTime.local()
+  onMoveDateModalOpen() {
+    this.dialog_moveDatePick_show = true;
+  }
+  onMoveDateModalSubmit() {
+    this.dialog_moveDatePick_show = false;
+    if (this.dialog_moveDatePick_point_dt) {
+      this.range.center = this.dialog_moveDatePick_point_dt;
+      this.l_requestUpdateData();
       (this.$refs.graph as any).onRangeChanged();
     }
   }
-
+  // CSV出力
+  dialog_csv_show: boolean = false
+  dialog_csv_start: DateTime | null = null
+  dialog_csv_end: DateTime | null = null
+  dialog_csv_scale: TimeScale = "minutes"
   onCSVOutputModalOpen() {
-    this.csv_scale = this.range.type;
-    this.dialog_csv = true;
+    this.dialog_csv_scale = this.range.type;
+    this.dialog_csv_show = true;
   }
-
   onCSVOutputModalSubmit() {
-    if (!(this.csv_start_dt && this.csv_end_dt)) {
+    if (!(this.dialog_csv_start && this.dialog_csv_end)) {
       return;
     }
-    if (this.csv_start_dt > this.csv_end_dt) {
+    if (this.dialog_csv_start > this.dialog_csv_end) {
       return;
     }
-    const dlurl = (new CountDataCSVRepositoryImpl()).getAll(this.csv_scale, this.csv_start_dt!, this.csv_end_dt!);
+    const dlurl = (new CountDataCSVRepositoryImpl()).getAll(this.dialog_csv_scale, this.dialog_csv_start!, this.dialog_csv_end!);
     window.open(dlurl, '_blank');
-  }
-
-  beforeRouteLeave (to: any, from: any, next: any) {
-    this.controller.clearInterval();
-    next();
   }
 }
 </script>

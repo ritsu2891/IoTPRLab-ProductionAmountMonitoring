@@ -11,6 +11,8 @@ type ChartDataSets = {[moteMacAddr: string]: ChartDataEntity[]};
 
 type MapView = { 
   data: ChartDataSets,
+  chartData: {[moteMacAddr: string]: number[]},
+  liveDt: {[moteMacAddr: string]: string}
 };
 
 export class MapViewController {
@@ -22,14 +24,25 @@ export class MapViewController {
   runner: number = -1;
   setting: SettingRepository = new SettingRepositoryImpl();
 
-  constructor(dest: any) {
+  constructor(dest: MapView) {
     this.dest = dest;
+    this.prepareDataStore();
     this.update();
     this.setInterval();
   }
 
+  prepareDataStore() {
+    if (this.setting && this.setting.moteMacAddrs) {
+      this.setting.moteMacAddrs.forEach(moteAddr => {
+        this.dest.data[moteAddr] = [];
+        this.dest.chartData[moteAddr] = [];
+        this.dest.liveDt[moteAddr] = "-----";
+      });
+    }
+  }
+
   setInterval() {
-    this.runner = window.setInterval(() => this.update(), this.itvlTime);
+    // this.runner = window.setInterval(() => this.update(), this.itvlTime);
   }
 
   clearInterval() {
@@ -42,7 +55,9 @@ export class MapViewController {
     let latestDtRegistered: boolean[] = moteAddrs.map((moteAddr) => !!self.latestDt[moteAddr]); //MoteAddrのソースに注意
     let allRegistered = latestDtRegistered.every((v) => v);
     let allUnRegistered = latestDtRegistered.every((v) => !v);
+
     if (!(allRegistered || allUnRegistered)) return;
+
     (async () => {
       let repoDatas: RepoDataSets = {};
       let repoDataResolver: Promise<void>[] = [];

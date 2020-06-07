@@ -81,9 +81,9 @@ export interface SettingRepository {
 export class SettingRepositoryImpl implements SettingRepository {
   get moteMacAddrs(): string[] {
     return [
-      '017d0031cb7a',
-      '017d0031ccab',
-      '017d0031c158'
+      'dm01',
+      'dm02',
+      'dm03'
     ];
   }
   get nMotes(): number {
@@ -91,17 +91,17 @@ export class SettingRepositoryImpl implements SettingRepository {
   }
   get machineProfile(): {[addr: string]: {name: string, color: string, goalCount: number}} {
     return this.getFromLS('machineProfile', {
-      '017d0031cb7a': {
+      'dm01': {
         name: 'ダミーマシン1',
         color: "#00FF00",
         goalCount: 10
       },
-      '017d0031ccab': {
+      'dm02': {
         name: 'ダミーマシン2',
         color: "#00FF00",
         goalCount: 10
       },
-      '017d0031c158': {
+      'dm03': {
         name: 'ダミーマシン3',
         color: "#00FF00",
         goalCount: 10

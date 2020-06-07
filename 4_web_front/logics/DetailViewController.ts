@@ -1,4 +1,4 @@
-import { DateTime, Duration } from 'luxon'
+import { DateTime } from 'luxon'
 import { CountDataRepository, CountDataRepositoryImpl, SettingRepository, SettingRepositoryImpl } from '~/logics/Repositories'
 import { CountData } from '~/entities/CountData'
 import { DataRange } from '~/entities/DataRange'
@@ -44,8 +44,11 @@ export class DetailViewController {
     const range = this.dest.range.type;
     const startDt = this.dest.range.begin.minus(margin);
     const endDt = this.dest.range.finish.plus(margin);
+
     this.repo.getAll(range, startDt, endDt).then((repoDatas) => {
-      this.dest.data = this.convert(repoDatas);
+      if (repoDatas) {
+        this.dest.data = this.convert(repoDatas);
+      }
     })
   }
 

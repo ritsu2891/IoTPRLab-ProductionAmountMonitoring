@@ -63,7 +63,7 @@ export default class DataSummarizeCard extends Vue {
   
   get styles() {return {
     root: {
-      height: "100%",
+      // height: "100%",
       position: "absolute",
       left: `${(this.x as number) + 32}px`,
       top: `${(this.y as number) + 32}px`,
@@ -112,6 +112,7 @@ export default class DataSummarizeCard extends Vue {
     if (this.data && n > 0) {
       this.liveData = this.data[n-1];
     }
+    this.chartdata = {};
     this.chartdata = {
       labels: label,
       datasets: [

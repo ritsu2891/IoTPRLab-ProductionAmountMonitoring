@@ -30,7 +30,7 @@
         <v-tooltip left>
         <template v-slot:activator="{ on }">
           <v-btn fab small dark color="green" v-on="on" @click.stop="onSettingModalOpen()">
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>mdi-cog</v-icon>
           </v-btn>
         </template>
         <span>設定</span>
