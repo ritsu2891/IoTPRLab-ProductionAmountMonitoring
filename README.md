@@ -27,6 +27,8 @@
 
 ![動作イメージ](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_1_map.png)
 
+[デモページはこちら](https://demo-iotpr.farpoint.jp/)
+
 ## 概要
 
 愛知県IoT推進ラボの活動の一環として開発し、実際に工場に導入した「生産個数モニタリングIoTシステム」です。生産個数を無線で送信し、リアルタイムで記録・表示するというものです。
