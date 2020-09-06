@@ -45,7 +45,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'iot_db'),
             'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'root'),
+            'password' => env('DB_PASSWORD', '7zJqNvm3ysniTgQokv6ppZPs2F8Ncu'),
             'unix_socket' => env('DB_SOCKET', '/tmp/mysql.sock'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
