@@ -14,35 +14,35 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
-    "@types/chart.js": "^2.9.21",
-    "@types/jest": "^25.2.3",
-    "@types/luxon": "^1.24.0",
+    "@types/chart.js": "^2.9.24",
+    "@types/jest": "^26.0.13",
+    "@types/luxon": "^1.24.4",
     "@types/pixi.js": "^5.0.0",
     "@types/url-join": "^4.0.0",
     "chart.js": "^2.9.3",
-    "luxon": "^1.24.1",
-    "nuxt": "^2.12.2",
+    "luxon": "^1.25.0",
+    "nuxt": "^2.14.4",
     "pixi": "^0.3.1",
-    "three": "^0.117.1",
+    "three": "^0.120.1",
     "ts-debounce-throttle": "^1.0.0",
     "url-join": "^4.0.1",
-    "vue-chartjs": "^3.5.0",
-    "vue-property-decorator": "^8.4.2"
+    "vue-chartjs": "^3.5.1",
+    "vue-property-decorator": "^9.0.0"
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.8.1",
-    "@nuxt/typescript-build": "^1.0.1",
+    "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/vuetify": "^1.11.2",
     "@types/three": "^0.103.2",
-    "@vue/test-utils": "^1.0.3",
-    "babel-jest": "^26.0.1",
-    "jest": "^26.0.1",
+    "@vue/test-utils": "^1.0.5",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
-    "ts-jest": "^26.1.0",
-    "ts-node": "^8.10.2",
-    "vue-jest": "^4.0.0-0"
+    "sass-loader": "^10.0.2",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "vue-jest": "^4.0.0-beta.5"
   }
 }
