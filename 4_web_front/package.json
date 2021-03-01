@@ -25,7 +25,7 @@
     "luxon": "^1.25.0",
     "nuxt": "^2.14.4",
     "pixi": "^0.3.1",
-    "three": "^0.120.1",
+    "three": "^0.125.0",
     "ts-debounce-throttle": "^1.0.0",
     "url-join": "^4.0.1",
     "vue-chartjs": "^3.5.1",
