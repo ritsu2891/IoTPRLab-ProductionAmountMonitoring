@@ -2,7 +2,7 @@
   <img src="https://cdn.rpaka.dev/icon/kec.png" height="80px" />
   <h1>IoTPRLab-ProductionAmountMonitoring</h1>
   <h1>生産個数モニタリングIoTシステム</h1>
-  <h2>愛知県IoT推進ラボ 2018-2019</h2><br>
+  <h2>愛知県IoT推進ラボ 2018-2020</h2><br>
   <div>
     <img src="https://cdn.rpaka.dev/logo/raspberry-pi.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://cdn.rpaka.dev/logo/c-lang.svg" height="80px" style="margin-right: 10px"/>
