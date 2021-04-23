@@ -1,31 +1,31 @@
 <div align="center" style="vertical-align: center;">
-  <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/icon.png" height="80px" />
+  <img src="https://cdn.rpaka.dev/icon/kec.png" height="80px" />
   <h1>IoTPRLab-ProductionAmountMonitoring</h1>
   <h1>生産個数モニタリングIoTシステム</h1>
   <h2>愛知県IoT推進ラボ 2018-2019</h2><br>
   <div>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/raspberry-pi.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/c-lang.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/dustnet.jpg" height="80px"/>
+    <img src="https://cdn.rpaka.dev/logo/raspberry-pi.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/c-lang.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/dustnet.jpg" height="80px"/>
   </div><br>
   <div>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/mysql.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/Python.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/php.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/laravel.svg" height="80px"/>
+    <img src="https://cdn.rpaka.dev/logo/mysql.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/python.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/php.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/laravel.svg" height="80px"/>
   </div><br>
   <div>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/typescript.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/vue.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/vuetify.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/chartjs.svg" height="80px"/>
+    <img src="https://cdn.rpaka.dev/logo/typescript.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/vue.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/vuetify.svg" height="80px" style="margin-right: 10px"/>
+    <img src="https://cdn.rpaka.dev/logo/chartjs.svg" height="80px"/>
   </div><br>
   <div>
-    <img src="https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/docker.svg" height="80px"/>
+    <img src="https://cdn.rpaka.dev/logo/docker.svg" height="80px"/>
   </div>
 </div><br>
 
-![動作イメージ](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_1_map.png)
+![動作イメージ](https://cdn.rpaka.dev/useimage/kec/web_1_map.png)
 
 ## 概要
 
@@ -33,7 +33,7 @@
 
 ## 構成
 
-![全体構成](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/arch-whole-b.jpg)
+![全体構成](https://cdn.rpaka.dev/useimage/kec/arch-whole-b.jpg)
 
 本システムはA. センサによる生産個数のカウントおよび送信(`1_rpi`)、B. カウントの受信および記録(`2_dust_manager`)、C. カウントの表示(`3_web_back`, `4_web_front`)の3つに分かれています。Aについてはシングルボードコンピュータ「Raspberry Pi」を用いて、BおよびCについてはWindows PC上でMySQLのDBに記録してブラウザにより表示するようにしました。データの受信・記録以外については通常のWebアプリケーションと変わりはありません。
 
@@ -45,7 +45,7 @@ Raspberry Piに接続したセンサにより生産個数をカウントし、1�
 
 実際に工場に設置した際は以下のRaspberry Pi・光電センサアンプ・dust networks通信モジュールを一つのボックスにまとめて設置しています。生産機械自体の大幅な改造を必要とせず後付けで取り付けられるようになっています。
 
-![ハードウェアボックス](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/hardware-box.jpeg)
+![ハードウェアボックス](https://cdn.rpaka.dev/useimage/kec/hardware-box.jpeg)
 
 
 ### B. カウントの受信および記録
@@ -57,7 +57,7 @@ dust networkにより受信した生産個数のカウントはPythonスクリ�
 
 ### C. カウントの表示
 
-![カウントの表示の構成](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/arch-display.jpg)
+![カウントの表示の構成](https://cdn.rpaka.dev/useimage/kec/arch-display.jpg)
 
 カウントの表示はWEBブラウザ上で行います。ブラウザからのデータの取得はAJAXで随時取得して壁画を更新するため、リロード操作は不要で最新のデータが自動的に表示されるようにしています。
 
@@ -71,27 +71,27 @@ dust networkにより受信した生産個数のカウントはPythonスクリ�
 
 工場内を俯瞰で見下ろしたイメージで作成した画面です。モニタリングしている機械の位置とそれぞれの生産個数を立体マップで表示しています。
 
-![マップ画面](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_1_map.png)
+![マップ画面](https://cdn.rpaka.dev/useimage/kec/web_1_map.png)
 
 ### グラフ画面
 
 生産個数の履歴を折れ線グラフで表示する画面です。この画面では任意の時刻の生産個数の記録を表示する事ができます。また1分以上の集計幅（2分, 3分, 5分…）で、分以外の集計単位（1時間、1日、1ヶ月…）で生産個数を集計してグラフ表示する事もできます。
 
-![グラフ画面](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_2_graph.png)
+![グラフ画面](https://cdn.rpaka.dev/useimage/kec/web_2_graph.png)
 
 時間軸の移動はテキスト入力・日付・時刻ピッカー（Vuetify.js）やマウス操作で行えます。
 
-![ピッカーによる時間軸移動](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_3_movetime.png)
+![ピッカーによる時間軸移動](https://cdn.rpaka.dev/useimage/kec/web_3_movetime.png)
 
-![マウスによる時間軸移動](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_4_movetime_mouse.gif)
+![マウスによる時間軸移動](https://cdn.rpaka.dev/useimage/kec/web_4_movetime_mouse.gif)
 
 集計単位の切り替えはボタンを押すか、マウスによりスケールを変更していくと自動的に変わります。
 
-![マウスによる時間スケール変更](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_5_changescale.gif)
+![マウスによる時間スケール変更](https://cdn.rpaka.dev/useimage/kec/web_5_changescale.gif)
 
 集計幅の切り替えは文字入力により行えます。
 
-![集計幅の変更](https://raw.githubusercontent.com/ritsu2891/IoTPRLab-ProductionAmountMonitoring/master/md-img/web_6_chunksize.gif)
+![集計幅の変更](https://cdn.rpaka.dev/useimage/kec/web_6_chunksize.gif)
 
 その他、以下のような機能があります。
 
