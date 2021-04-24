@@ -6,7 +6,7 @@
   <div>
     <img src="https://cdn.rpaka.dev/logo/raspberry-pi.svg" height="80px" style="margin-right: 10px"/>
     <img src="https://cdn.rpaka.dev/logo/c-lang.svg" height="80px" style="margin-right: 10px"/>
-    <img src="https://cdn.rpaka.dev/logo/dustnet.jpg" height="80px"/>
+    <img src="https://cdn.rpaka.dev/logo/dustnet.png" height="80px"/>
   </div><br>
   <div>
     <img src="https://cdn.rpaka.dev/logo/mysql.svg" height="80px" style="margin-right: 10px"/>
